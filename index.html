@@ -15,8 +15,6 @@
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/main.css">
-        <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
@@ -33,32 +31,35 @@
         <script id="events_template" type="text/template">
         	<% 
         		eventModels = this.collection.models[0].attributes.results
+    			function formatAMPM(date) {
+    			  var day = date.getDate();
+    			  var month = date.getMonth()+1;
+    			  var year = date.getFullYear();
+				  var hours = date.getHours();
+				  var minutes = date.getMinutes();
+				  var ampm = hours >= 12 ? 'pm' : 'am';
+				  hours = hours % 12;
+				  hours = hours ? hours : 12; // the hour '0' should be '12'
+				  minutes = minutes < 10 ? '0'+minutes : minutes;
+				  var strDate = month + '/' + day + '/' + year;
+				  var strTime = hours + ':' + minutes + ' ' + ampm;
+				  return '<span class="date">' + strDate + '</span><span class="time">' + strTime + '</span>';
+	}		   
         		_.each(eventModels, function(event) { 
         	%>        		
 	        	<%= console.log(event) %>
 	        	<div class="eventContainer">
-		        	<h2><%= event.name %></h2>
-		        	<div class="eventTime">
-		        		<% 
-		        			function formatAMPM(date) {
-		        			  var day = date.getDate();
-		        			  var month = date.getMonth()+1;
-		        			  var year = date.getFullYear();
-							  var hours = date.getHours();
-							  var minutes = date.getMinutes();
-							  var ampm = hours >= 12 ? 'pm' : 'am';
-							  hours = hours % 12;
-							  hours = hours ? hours : 12; // the hour '0' should be '12'
-							  minutes = minutes < 10 ? '0'+minutes : minutes;
-							  var strDate = month + '/' + day + '/' + year;
-							  var strTime = hours + ':' + minutes + ' ' + ampm;
-							  return '<span class="date">' + strDate + '</span><span class="time">' + strTime + '</span>';
-							}
-		        		%>
-		        		<%= formatAMPM(new Date(event.time)) %>
-		        	</div><! -- end Time -->
+		        	<div class="eventTitle">
+			        	<h2><%= event.name %></h2>
+			        	<div class="eventTime">		        		
+			        		<%= formatAMPM(new Date(event.time)) %>
+			        	</div><! -- end Time -->
+		        	</div><!-- /.eventTitle -->
 		        	<p><%= event.description %></p>
-		        	
+		        	<h4>RSVP Count <span class="badge badge-success"><%= event.yes_rsvp_count %></span></h4>
+		        	<a class="btn btn-info" id="event-members" data-id="<%= event.id %>">
+		        		Who are the <%= event.yes_rsvp_count %> people attending
+		        	</a>
 	        	</div>
 	        <% }); %>	
         </script>
