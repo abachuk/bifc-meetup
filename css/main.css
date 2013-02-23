@@ -336,19 +336,30 @@ p strong {
 	background-image: url(../img/event-info.png);
 	background-position: top right;
 	background-repeat: no-repeat;
-	margin: 25px;
+	margin: 25px auto;
 	padding: 25px;
 	-moz-box-shadow: 0 0 8px 2px #888;
 	-webkit-box-shadow: 0 0 8px 2px#888;
 	box-shadow: 0px 0px 8px 2px #888;
+	max-width: 840px;
 }
 	
-}
 
 .eventTitle {
+	position: relative;
 
 }
 
+.eventTime {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+
+.eventTime span {
+	display: block;
+	text-align: right;
+}
 .date {
 	font-style: italic;
 	font-size: 12px;
@@ -359,7 +370,6 @@ p strong {
 	font-style: italic;
 	font-size: 12px;
 	color: #999;
-	margin: 0 0 0 12px;
 }
 .eventDescription {
 
