@@ -12,13 +12,36 @@ var Events = Backbone.Collection.extend({
 		  } 	
 });
 
+var Member = Backbone.Model.extend({});
+var Members = Backbone.Collection.extend({	 
+		url: "https://api.meetup.com/2/rsvps",
+		sync: function(method, model, options){  
+		    options.timeout = 10000;  
+		    options.dataType = "jsonp";  
+		    return Backbone.sync(method, model, options);
+		  }
+});
+
 var EventsView = Backbone.View.extend({
     
     initialize: function() {
         _.bindAll(this, 'render');
         this.collection.bind('reset', this.render);
     },
-   
+    
+    events: {
+	    "click #event-members" : "evMembers"
+    },
+    
+    evMembers: function() {
+	    alert('df');
+	    members.fetch({
+			data: {
+				"event_id" : "qjqwhfyrdbhc",
+				"key" : "1b4548224d397e28111d791128524d2f"
+			}
+		})
+    },   
     
     template: _.template( $("#events_template").html()),
     
@@ -31,10 +54,7 @@ var EventsView = Backbone.View.extend({
 
        //return $(this.el).append( template(items) );
     },
-    
-    fetchEvents: function() {
-	    this.collection.fetch();
-    }
+   
     
 });
 
@@ -43,8 +63,13 @@ var EventsView = Backbone.View.extend({
 var events = new Events;
 var eventsView = new EventsView({
 		el: $('#events'),
-	collection: events
+		collection: events
 });
+var members = new Members({
+	//url: "https://api.meetup.com/2/rsvps?event_id=&key=1b4548224d397e28111d791128524d2f"
+})
+
+
 
 
 $('a').click(function(){
