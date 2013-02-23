@@ -24,8 +24,9 @@ var Members = Backbone.Collection.extend({
 
 var EventsView = Backbone.View.extend({
     
-    initialize: function() {
+    initialize: function(attrs) {
         _.bindAll(this, 'render');
+        this.options = attrs;
         this.collection.bind('reset', this.render);
     },
     
@@ -33,14 +34,18 @@ var EventsView = Backbone.View.extend({
 	    "click #event-members" : "evMembers"
     },
     
-    evMembers: function() {
-	    alert('df');
+    evMembers: function(e) {
+    	e.preventDefault();
+	    var id = $(e.currentTarget).data("id");
+	    //var item = this.collection.get(id);
+	    alert(id);
 	    members.fetch({
 			data: {
-				"event_id" : "qjqwhfyrdbhc",
+				"event_id" : id,
 				"key" : "1b4548224d397e28111d791128524d2f"
 			}
-		})
+		});
+		
     },   
     
     template: _.template( $("#events_template").html()),
@@ -66,6 +71,7 @@ var eventsView = new EventsView({
 		collection: events
 });
 var members = new Members({
+		
 	//url: "https://api.meetup.com/2/rsvps?event_id=&key=1b4548224d397e28111d791128524d2f"
 })
 
