@@ -25,7 +25,7 @@ var EventsView = Backbone.View.extend({
     render: function(){
        console.log(this.collection.toJSON());
        var viewAllEvens = this.template(this.collection.toJSON());
-       //console.log(viewAllEvens.collection);
+       
        $(this.el).html(viewAllEvens);
        return this;
 
