@@ -32,9 +32,20 @@
         		_.each(eventModels, function(event) { 
         	%>        		
 	        	<%= console.log(event) %>
-	        	<div class="eventContainer">
-		        	<h2><%= event.name %></h2>
-		        	<p><%= event.description %></p>
+	        	<div class="eventContainer container-fluid">
+	        		<div class="span10">
+		        		<h2 class="eventTitle"><%= event.name %></h2>
+		        	</div>
+		        	<div class="span2">
+		        		<a href="#"><i class="icon-globe"></i></a>
+		        	</div>
+		        	<div class="span12">
+		        		<p class="eventDescription"><%= event.description %></p>
+		        		
+		        		<a href="#" class="eventAttendees">Who are the people attending?</a>
+		        		
+		        	</div>
+		        	
 	        	</div>
 	        <% }); %>	
         </script>
