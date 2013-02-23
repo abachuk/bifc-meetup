@@ -19,10 +19,12 @@
     </head>
     <body>
         <div class="container-fluid">
-
-	        <div id="events"></div>
 	        
 	        <a class="btn" href="#" id="loadEvents">Load Events</a>
+	        
+	        <div id="events"></div>
+	        
+	        
         
         </div>
         
@@ -34,7 +36,27 @@
 	        	<%= console.log(event) %>
 	        	<div class="eventContainer">
 		        	<h2><%= event.name %></h2>
+		        	<div class="eventTime">
+		        		<% 
+		        			function formatAMPM(date) {
+		        			  var day = date.getDate();
+		        			  var month = date.getMonth()+1;
+		        			  var year = date.getFullYear();
+							  var hours = date.getHours();
+							  var minutes = date.getMinutes();
+							  var ampm = hours >= 12 ? 'pm' : 'am';
+							  hours = hours % 12;
+							  hours = hours ? hours : 12; // the hour '0' should be '12'
+							  minutes = minutes < 10 ? '0'+minutes : minutes;
+							  var strDate = month + '/' + day + '/' + year;
+							  var strTime = hours + ':' + minutes + ' ' + ampm;
+							  return '<span class="date">' + strDate + '</span><span class="time">' + strTime + '</span';
+							}
+		        		%>
+		        		<%= formatAMPM(new Date(event.time)) %>
+		        	</div><! -- end Time -->
 		        	<p><%= event.description %></p>
+		        	
 	        	</div>
 	        <% }); %>	
         </script>
