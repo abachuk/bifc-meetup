@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+        <div class="container-fluid">
+
+	        <div id="events"></div>
+	        
+	        <a class="btn" href="#" id="loadEvents">Load Events</a>
+        
+        </div>
+        
+        <script id="events_template" type="text/template">
+        	<% 
+        		eventModels = this.collection.models[0].attributes.results
+        		_.each(eventModels, function(event) { 
+        	%>        		
+	        	<%= console.log(event) %>
+	        	<div class="eventContainer">
+		        	<h2><%= event.name %></h2>
+		        	<p><%= event.description %></p>
+	        	</div>
+	        <% }); %>	
+        </script>
+        
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
+        <script src="http://underscorejs.org/underscore-min.js"></script>
+        <script src="http://backbonejs.org/backbone-min.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+    </body>
+</html>
