@@ -19,18 +19,12 @@
     </head>
     <body>
         <div class="container-fluid">
-	        
 	        <a class="btn" href="#" id="loadEvents">Load Events</a>
-	        
-	        <div id="events"></div>
-	        
-	        
-        
-        </div>
+	    </div>
+	    <div id="events"></div>
         
         <script id="events_template" type="text/template">
         	<% 
-        		console.log(this)
         		eventModels = this.collection.models[0].attributes.results
     			function formatAMPM(date) {
     			  var day = date.getDate();
@@ -49,7 +43,7 @@
         		_.each(eventModels, function(event) { 
         	%>        		
 	        	<%= console.log(event) %>
-	        	<div class="eventContainer">
+	        	  <div class="eventContainer">
 		        	<div class="eventTitle">
 			        	<h2><%= event.name %></h2>
 			        	<div class="eventTime">		        		
@@ -57,11 +51,12 @@
 			        	</div><! -- end Time -->
 		        	</div><!-- /.eventTitle -->
 		        	<p><%= event.description %></p>
-		        	<h4>RSVP Count <span class="badge badge-success"><%= event.yes_rsvp_count %></span></h4>
-		        	<a class="btn btn-info" id="event-members" data-id="<%= event.id %>">
+		        	<h4><span class="badge badge-success"><%= event.yes_rsvp_count %></span> RSVP Count</h4>
+		        <!--	<a class="btn btn-info" id="event-members" data-id="<%= event.id %>">
 		        		Who are the <%= event.yes_rsvp_count %> people attending
-		        	</a>
-		        	<div class="rsvpMembers" id="rsvp-<%= event.id %>"><%= console.log(this.some) %></div>
+		        	</a> 
+		        -->
+		        	<a class="" id="event-members" data-id="<%= event.id %>"><div class="rsvpMembers" id="rsvp-<%= event.id %>"></div><span class="viewRSVP">[ view ]</span></a><!-- end bottom-corner -->
 	        	</div>
 	        <% }); %>	
         </script>
