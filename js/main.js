@@ -68,7 +68,8 @@ var EventsView = Backbone.View.extend({
 var events = new Events;
 var eventsView = new EventsView({
 		el: $('#events'),
-		collection: events
+		collection: events,
+		some: "something"
 });
 var members = new Members({
 		

@@ -30,6 +30,7 @@
         
         <script id="events_template" type="text/template">
         	<% 
+        		console.log(this)
         		eventModels = this.collection.models[0].attributes.results
     			function formatAMPM(date) {
     			  var day = date.getDate();
@@ -60,7 +61,7 @@
 		        	<a class="btn btn-info" id="event-members" data-id="<%= event.id %>">
 		        		Who are the <%= event.yes_rsvp_count %> people attending
 		        	</a>
-		        	<div class="rsvpMembers" id="rsvp-<%= event.id %>"></div>
+		        	<div class="rsvpMembers" id="rsvp-<%= event.id %>"><%= console.log(this.some) %></div>
 	        	</div>
 	        <% }); %>	
         </script>
