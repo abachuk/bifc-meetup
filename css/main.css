@@ -347,6 +347,19 @@ p span strong {
 	left: -12px;
 }
 
+p em strong {
+	font-size: 12px;
+}
+
+p em strong a {
+	font-size: 10px;
+	color: #999;
+}
+
+p em strong a:hover {
+	color: #333;
+}
+
 .container-fluid {
 	margin: 0 auto;
 }
