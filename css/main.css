@@ -311,9 +311,15 @@ h2 {
 	top: 7px;
 }
 
+h4 span {
+	position: relative;
+	top: 0px;
+}
+
 p {
 	font-family: 'Open Sans', sans-serif;
 	color: #2E2E2E;
+	font-size: 12px;
 
 }
 
@@ -324,11 +330,36 @@ p span {
 	left: 12px;
 }
 
+p span span {
+	position: relative;
+	left: 0px;
+}
+
 p strong {
 	font-family: 'Libre Baskerville', serif;
 	font-size: 18px;
 	border-bottom: 1px solid #999;
 	display: block;
+}
+
+p span strong {
+	position: relative;
+	left: -12px;
+}
+
+.container-fluid {
+	margin: 0 auto;
+}
+
+#loadEvents {
+	width: 300px;
+	margin: 5px auto;
+	display: block;
+}
+
+.container-fluid {
+	padding-right: 0px;
+	padding-left: 0px;
 }
 
 .eventContainer {
@@ -341,7 +372,7 @@ p strong {
 	-moz-box-shadow: 0 0 8px 2px #888;
 	-webkit-box-shadow: 0 0 8px 2px#888;
 	box-shadow: 0px 0px 8px 2px #888;
-	max-width: 840px;
+	max-width: 640px;
 }
 	
 
@@ -350,10 +381,19 @@ p strong {
 
 }
 
+.linkified {
+	font-size: 9px;
+	color: #999;
+}
+
+.linkified:hover {
+	color: #333;
+}
+
 .eventTime {
 	position: absolute;
-	right: 0px;
-	top: 0px;
+	right: -6px;
+	top: -20px;
 }
 
 .eventTime span {
@@ -373,6 +413,32 @@ p strong {
 }
 .eventDescription {
 
+}
+
+.badge-success {
+	background-color: #333;
+	position: relative;
+	top: -2px;
+}
+
+.event-members {
+	position: relative;
+}
+
+.viewRSVP {
+	font-size: 10px;
+	color: #999;
+	position: relative;
+	bottom: 34px;
+	left: 151px;
+}
+
+.viewRSVP:hover {
+	color: #333;
+	position: relative;
+	bottom: 34px;
+	left: 151px;
+	text-decoration: none;
 }
 
 .eventAttendees {
