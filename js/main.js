@@ -4,7 +4,7 @@
 var Event = Backbone.Model.extend({});
 var Events = Backbone.Collection.extend({
 	model: Event,  
-		url: "https://api.meetup.com/2/events?group_urlname=builtinfairco&key=1b4548224d397e28111d791128524d2f",  
+		url: "https://api.meetup.com/2/events",  
 		sync: function(method, model, options){  
 		    options.timeout = 10000;  
 		    options.dataType = "jsonp";  
@@ -22,11 +22,14 @@ var Members = Backbone.Collection.extend({
 		  }
 });
 
+var allMembersPhotos;
+
 var EventsView = Backbone.View.extend({
     
     initialize: function(attrs) {
         _.bindAll(this, 'render');
         this.options = attrs;
+        //this.members = new Members();
         this.collection.bind('reset', this.render);
     },
     
@@ -37,12 +40,21 @@ var EventsView = Backbone.View.extend({
     evMembers: function(e) {
     	e.preventDefault();
 	    var id = $(e.currentTarget).data("id");
-	    //var item = this.collection.get(id);
-	    alert(id);
+	    console.log(id);
 	    members.fetch({
 			data: {
 				"event_id" : id,
 				"key" : "1b4548224d397e28111d791128524d2f"
+			},
+			success: function(response) {
+				console.log(response);
+				rsvpMembers = response.models[0].attributes.results;
+				var tmpl = _.template($('#rsvpTemplate').html())
+				$('#photos div').html(tmpl(rsvpMembers));
+				$('#photos').fadeIn();
+				$('#photos a').click(function(){
+					$('#photos').fadeOut();
+				});
 			}
 		});
 		
@@ -71,17 +83,17 @@ var eventsView = new EventsView({
 		collection: events,
 		some: "something"
 });
-var members = new Members({
-		
-	//url: "https://api.meetup.com/2/rsvps?event_id=&key=1b4548224d397e28111d791128524d2f"
-})
+var members = new Members({});
 
 
 
 
 $('a').click(function(){
 	events.fetch({
-
+		data:{
+			"group_urlname" : $('#group-name').val(),
+			"key" : "1b4548224d397e28111d791128524d2f"
+		}
 	});
 });
 

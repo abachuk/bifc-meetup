@@ -19,9 +19,15 @@
     </head>
     <body>
         <div class="container-fluid">
+        	<div class="suggestion">suggestions: <h4>stamfordwp</h4><h4>The-Stamford-Tech-Meetup</h4><h4>Stamford-Innovation-Center-Meetup</h4><h4>bifc-dev</h4></div>
+        	<input type="text" id="group-name" placeholder="Enter Group Name URL">
 	        <a class="btn" href="#" id="loadEvents">Load Events</a>
 	    </div>
 	    <div id="events"></div>
+	    <div id="photos">
+		    	<div></div>
+		    	<a class="btn btn-danger">Close</a>
+	    </div>
         
         <script id="events_template" type="text/template">
         	<% 
@@ -56,9 +62,24 @@
 		        		Who are the <%= event.yes_rsvp_count %> people attending
 		        	</a> 
 		        -->
-		        	<a class="" id="event-members" data-id="<%= event.id %>"><div class="rsvpMembers" id="rsvp-<%= event.id %>"></div><span class="viewRSVP">[ view ]</span></a><!-- end bottom-corner -->
+		        	<a id="event-members" data-id="<%= event.id %>" class="btn btn-success">View All</a><!-- end bottom-corner -->
+		        	
 	        	</div>
 	        <% }); %>	
+        </script>
+        
+        <script id="rsvpTemplate" type="text/template">
+			
+			<% _.each(rsvpMembers, function(rsvp) {
+				if (typeof(rsvp.member_photo) != "undefined") {
+					var photo = rsvp.member_photo.photo_link
+				} else {
+					var photo = 'http://placehold.it/100x100'
+				}				
+				console.log(photo) %>
+
+				<img src="<%= photo %>" width="100" height="auto" class="rsvp-img">
+			<% }); %>
         </script>
         
 

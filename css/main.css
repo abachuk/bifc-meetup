@@ -364,9 +364,10 @@ p em strong a:hover {
 	margin: 0 auto;
 }
 
-#loadEvents {
+#loadEvents,
+#group-name {
 	width: 300px;
-	margin: 5px auto;
+	margin: 2em auto;
 	display: block;
 }
 
@@ -458,3 +459,32 @@ p em strong a:hover {
 
 }
 
+
+#photos {
+	position: fixed;
+	left: 10%;
+	width: 80%;
+	height: 80%;
+	top: 2%;
+	background: #ccc;
+	background: rgba(0,0,0,0.7);
+	border: 1px solid #333;
+	padding: 10px;
+	display: none;
+	overflow: scroll;
+}
+
+.rsvp-img {
+	margin: 1em;
+}
+
+.suggestion {
+	text-align: center;
+}
+
+.suggestion h4 {
+	margin: 0;
+	padding: 0;
+	line-height: 1.3em;
+	
+}
